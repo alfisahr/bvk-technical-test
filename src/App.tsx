@@ -1,22 +1,9 @@
-import { useEffect } from "react";
 import "./App.css";
-import apiClient from "./services/apiClient";
+import { RouterProvider } from "react-router-dom";
+import router from "./utils/routes";
 
 function App() {
-  useEffect(() => {
-    async function fetchData() {
-      const res = await apiClient.get("/trending/movie/day");
-      console.log(res);
-    }
-    fetchData();
-    // console.log("dijalankan");
-  }, []);
-
-  return (
-    <>
-      <div className="text-red-500">tes</div>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
