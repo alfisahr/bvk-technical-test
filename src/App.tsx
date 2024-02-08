@@ -1,9 +1,10 @@
 import "./App.css";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <>
-      <div className="text-red-500">tes</div>
+      <Layout>layout tes</Layout>
     </>
   );
 }
