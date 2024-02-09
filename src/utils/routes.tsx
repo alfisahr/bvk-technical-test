@@ -4,7 +4,7 @@ import Movie from "../pages/Movie";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
-  { path: "/movie", element: <Movie /> },
+  { path: "/movie/:id", element: <Movie /> },
 ]);
 
 export default router;
