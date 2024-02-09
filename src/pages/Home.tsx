@@ -1,24 +1,43 @@
-import { useContext, useEffect, useReducer, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { Movie as MovieType } from "../types";
 import { Movie } from "../components/movie/Movie";
-import { Thumb } from "../components/movie/Thumb";
 import WatchedButton from "../components/WatchedButton";
+import AppContext from "../states/appContext";
 import { Link } from "react-router-dom";
 import apiClient from "../services/apiClient";
 
 function Home() {
   const [movies, setMovies] = useState<MovieType[]>([]);
 
+  const {
+    watchedMovies,
+    movies: moviesContext,
+    dispatchMovies,
+    dispatchWatched,
+  } = useContext(AppContext);
+
   useEffect(() => {
-    async function fetchData() {
-      const res = await apiClient.get("/trending/movie/day");
-      // console.log(res);
-      setMovies(res.data.results);
+    if (moviesContext.length === 0) {
+      async function fetchData() {
+        const res = await apiClient.get("/trending/movie/day");
+        setMovies(res.data.results);
+        dispatchMovies({ type: "ADD_MOVIES", movies: res.data.results });
+      }
+      fetchData();
+    } else {
+      setMovies(moviesContext);
     }
-    fetchData();
-    // console.log("dijalankan");
   }, []);
+
+  const handleClick = (movie: MovieType) => {
+    const isExist = watchedMovies.filter((w) => w.id === movie.id);
+    if (isExist.length > 0) {
+      dispatchWatched({ type: "DELETE_WATCHED", movieId: movie.id });
+    } else {
+      dispatchWatched({ type: "ADD_WATCHED", movie });
+    }
+  };
 
   return (
     <Layout>
@@ -45,8 +64,11 @@ function Home() {
                       />
                       <Movie.Action>
                         <WatchedButton
-                          isChecked={false}
-                          onClick={() => console.log("ok")}
+                          isChecked={
+                            watchedMovies.filter((w) => w.id === movie.id)
+                              .length > 0
+                          }
+                          onClick={() => handleClick(movie)}
                         />
                       </Movie.Action>
                     </Movie.Wrapper>
