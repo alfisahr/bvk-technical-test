@@ -67,6 +67,8 @@ function Home() {
                           isChecked={
                             watchedMovies.filter((w) => w.id === movie.id)
                               .length > 0
+                              ? "checked"
+                              : "default"
                           }
                           onClick={() => handleClick(movie)}
                         />

@@ -30,14 +30,12 @@ const Movie = () => {
       console.log(watchedMovies);
       data.comment = watchedMovies[0].comment;
       data.rating = watchedMovies[0].rating;
-      //console.log(watchedMovies[0].comment);
     }
   }, [data]);
 
   useEffect(() => {
     async function fetchData() {
       const res = await apiClient.get(`/movie/${params.id}`);
-      //console.log(res.data);
       setData(res.data);
       dispatchApp({
         type: "SET_SELECTED_MOVIE",
