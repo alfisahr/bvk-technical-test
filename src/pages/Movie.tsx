@@ -22,21 +22,27 @@ const Movie = () => {
   const [isWatched, setIsWatched] = useState(false);
 
   useEffect(() => {
-    if (
-      data &&
-      watchedMovies.filter((watch) => watch.id === parseInt(params.id!))
-        .length > 0
-    ) {
-      setIsWatched(true);
-      console.log(watchedMovies);
-      data.comment = watchedMovies[0].comment;
-      data.rating = watchedMovies[0].rating;
+    if (data) {
+      const filtered = watchedMovies.filter(
+        (watch) => watch.id === parseInt(params.id!)
+      );
+      if (filtered.length > 0) {
+        setData(filtered[0]);
+      }
     }
-  }, [data]);
+  }, [watchedMovies]);
 
   useEffect(() => {
     async function fetchData() {
       const res = await apiClient.get(`/movie/${params.id}`);
+      const filtered = watchedMovies.filter(
+        (watch) => watch.id === parseInt(params.id!)
+      );
+      if (filtered.length > 0) {
+        res.data.rating = filtered[0].rating;
+        res.data.comment = filtered[0].comment;
+        setIsWatched(true);
+      }
       setData(res.data);
       dispatchApp({
         type: "SET_SELECTED_MOVIE",
