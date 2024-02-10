@@ -91,7 +91,7 @@ const Movie = () => {
             isWatched={isWatched}
           />
           <Container>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid lg:grid-cols-3 md:grid-cols-3 gap-4 sm:grid-cols-1">
               <div className="col-span-2">
                 <TopCast credits={data.credits} />
                 <Comments

@@ -48,9 +48,9 @@ const MovieHeader = ({
       ></div>
       <div className="bg-black/80 absolute left-0 top-0 w-full h-full -z-10"></div>
       <Container className="z-30 text-white/80">
-        <div className="flex">
+        <div className="flex flex-col sm:flex-col xs:flex-col md:flex-row xl:flex-row">
           <Thumb poster_path={movie.poster_path} />
-          <div className="flex-1 pt-10">
+          <div className="flex-1 pt-10 px-3 sm:px-3 md:px-0 lg:px-0">
             <Title title={movie.title} releaseDate={releaseDate} />
             <div className="mb-5">
               <Meta>{releaseDate}</Meta>

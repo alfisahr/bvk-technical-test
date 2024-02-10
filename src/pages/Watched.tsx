@@ -26,7 +26,7 @@ function Watched() {
     <Layout>
       <div className="container mx-auto py-10">
         <h1 className="font-bold text-3xl mb-5">Watched Movies</h1>
-        <div className="grid grid-cols-5 gap-3">
+        <div className="grid xl:grid-cols-5 md:grid-cols-4 gap-5 sm:grid-cols-2 xs:grid-cols-1">
           {watchedMovies &&
             watchedMovies.map((movie, key) => {
               return (
