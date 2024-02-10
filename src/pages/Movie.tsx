@@ -11,6 +11,7 @@ import numberFormat from "../utils/numberFormat";
 import Comments from "../components/Comments";
 import apiClient from "../services/apiClient";
 import AppContext from "../states/appContext";
+import yearReleased from "../utils/yearReleased";
 
 const Movie = () => {
   const params = useParams();
@@ -41,6 +42,9 @@ const Movie = () => {
         type: "SET_SELECTED_MOVIE",
         movieId: parseInt(params.id!),
       });
+      document.title = `${res.data.title} (${yearReleased(
+        res.data.release_date
+      )}) :: BvKIMDB`;
     }
     fetchData();
 

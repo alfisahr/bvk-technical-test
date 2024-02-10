@@ -18,6 +18,8 @@ function Home() {
   } = useContext(AppContext);
 
   useEffect(() => {
+    document.title = "Home :: BvKIMDB";
+
     if (moviesContext.length === 0) {
       async function fetchData() {
         const res = await apiClient.get("/trending/movie/day");

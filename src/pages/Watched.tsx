@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Movie as MovieType } from "../types";
 import Layout from "../components/Layout";
 import AppContext from "../states/appContext";
@@ -17,6 +17,10 @@ function Watched() {
       dispatchWatched({ type: "ADD_WATCHED", movie });
     }
   };
+
+  useEffect(() => {
+    document.title = "Watched Movies :: BvKIMDB";
+  }, []);
 
   return (
     <Layout>
