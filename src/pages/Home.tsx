@@ -10,26 +10,18 @@ import apiClient from "../services/apiClient";
 function Home() {
   const [movies, setMovies] = useState<MovieType[]>([]);
 
-  const {
-    watchedMovies,
-    movies: moviesContext,
-    dispatchMovies,
-    dispatchWatched,
-  } = useContext(AppContext);
+  const { watchedMovies, dispatchMovies, dispatchWatched } =
+    useContext(AppContext);
 
   useEffect(() => {
     document.title = "Home :: BvKIMDB";
 
-    if (moviesContext.length === 0) {
-      async function fetchData() {
-        const res = await apiClient.get("/trending/movie/day");
-        setMovies(res.data.results);
-        dispatchMovies({ type: "ADD_MOVIES", movies: res.data.results });
-      }
-      fetchData();
-    } else {
-      setMovies(moviesContext);
+    async function fetchData() {
+      const res = await apiClient.get("/trending/movie/day");
+      setMovies(res.data.results);
+      dispatchMovies({ type: "ADD_MOVIES", movies: res.data.results });
     }
+    fetchData();
   }, []);
 
   const handleClick = (movie: MovieType) => {

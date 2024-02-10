@@ -27,7 +27,11 @@ const Movie = () => {
         (watch) => watch.id === parseInt(params.id!)
       );
       if (filtered.length > 0) {
-        setData(filtered[0]);
+        setData({
+          ...data,
+          rating: watchedMovies[0].rating,
+          comment: watchedMovies[0].comment,
+        });
       }
     }
   }, [watchedMovies]);

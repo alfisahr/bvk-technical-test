@@ -53,7 +53,7 @@ const Comments = forwardRef<HTMLDivElement, CommentsProps>(
         textareaRef.current.value = "";
         setForm(false);
       }
-      console.log(localComments);
+      //console.log(localComments);
     };
 
     return (

@@ -14,7 +14,7 @@ import Container from "./Container";
 import { Meta } from "./movieheader/Meta";
 import MainCrew from "./movieheader/MainCrew";
 import useCredits from "../hooks/useCredits";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import AppContext from "../states/appContext";
 
