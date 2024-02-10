@@ -1,6 +1,7 @@
 import Container from "./Container";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import RateModal from "./RateModal";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -10,6 +11,7 @@ type LayoutProps = {
 const Layout = ({ children, useContainer = true }: LayoutProps) => {
   return (
     <div className="relative">
+      <RateModal />
       <Navbar />
       {useContainer ? (
         <div className={useContainer ? "py-10" : ""}>
